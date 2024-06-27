@@ -29,4 +29,4 @@ const Connect = async () => {
 
 Connect();
 
-app.use("/api", route);
+app.use("/api/v2", route);

@@ -102,21 +102,11 @@
                     </p>
 
                     <form
-                      action="http://localhost:3001/api/insertmembers"
+                      action="http://localhost:3002/api/v2/insertmembers"
                       method="post"
                       enctype="multipart/form-data"
                       id="myForm"
                     >
-                      <!-- <div class="form-group">
-                        <label for="simpleinput">ID</label>
-                        <input
-                          type="text"
-                          id="id"
-                          class="form-control"
-                          placeholder="0"
-                          disabled
-                        />
-                      </div> -->
                       <div class="form-group">
                         <label for="simpleinput">Name</label>
                         <input
@@ -137,15 +127,6 @@
                           placeholder="Enter Position"
                         />
                       </div>
-                      <!-- <div class="form-group">
-                        <label for="simpleinput">Image URL</label>
-                        <input
-                          type="text"
-                          id="imgurl"
-                          name="imgurl"
-                          class="form-control"
-                          placeholder="Enter Image URL"
-                        /> -->
                       <div class="form-group">
                         <label for="simpleinput">Facebook Link</label>
                         <input
@@ -186,9 +167,6 @@
                           placeholder="https://wa.me/<number> "
                         />
                       </div>
-                      <!-- <div>
-                        <input type="file" name="image" required />
-                      </div> -->
                       <p class="notice">
                         <span>Notice: </span>Please Add Width : 91px Height :
                         91px Images Only.Images Of Other Sizes Are Lager Than
@@ -207,6 +185,7 @@
                       </button>
                     </form>
                   </div>
+
                   <!-- end card-body-->
                 </div>
                 <!-- end card -->
@@ -248,6 +227,7 @@
     <!-- App js -->
     <script src="../assets/js/theme.js"></script>
 
+    <!-- Dropzone js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 
     <!-- Menu Loader js -->
@@ -256,8 +236,8 @@
     <script>
       Dropzone.autoDiscover = false;
 
-      var myDropzone = new Dropzone("#imgurl", {
-        url: "http://localhost:3001/api/insertmembers", // Replace with your backend upload URL
+      const myDropzone = new Dropzone("#imgurl", {
+        url: "http://localhost:3002/api/v2/insertmembers",
         paramName: "image",
         maxFilesize: 5, // MB
         acceptedFiles: ".jpeg,.jpg,.png",
@@ -265,10 +245,10 @@
         addRemoveLinks: true,
         autoProcessQueue: false,
         init: function () {
-          var submitButton = document.querySelector("#submit-button");
-          var myDropzone = this; // closure
+          const submitButton = document.querySelector("#submit-button");
+          const myDropzone = this; // closure
 
-          submitButton.addEventListener("click", function (e) {
+          submitButton.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
             if (myDropzone.getQueuedFiles().length > 0) {
@@ -278,7 +258,7 @@
             }
           });
 
-          this.on("sending", function (file, xhr, formData) {
+          this.on("sending", (file, xhr, formData) => {
             // Append all form inputs to the FormData object
             document
               .querySelectorAll("#myForm input")
@@ -287,11 +267,12 @@
               });
           });
 
-          this.on("success", function (file, response) {
+          this.on("success", (file, response) => {
+            alert("Success");
             document.querySelector("#myForm").submit(); // Submit the form after successful upload
           });
 
-          this.on("error", function (file, errorMessage) {
+          this.on("error", (file, errorMessage) => {
             console.error(errorMessage);
           });
         },

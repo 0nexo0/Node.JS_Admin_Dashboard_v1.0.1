@@ -1,4 +1,4 @@
-fetch("http://127.0.0.1:3001/api/members")
+fetch("http://127.0.0.1:3002/api/v2/members")
   .then((response) => response.json())
   .then((data) => {
     const h3Element = document.getElementById("members");
@@ -8,7 +8,7 @@ fetch("http://127.0.0.1:3001/api/members")
   .catch((error) => {
     console.log(error);
   });
-fetch("http://127.0.0.1:3001/api/bookings")
+fetch("http://127.0.0.1:3002/api/v2/bookings")
   .then((response) => response.json())
   .then((data) => {
     const h3Element = document.getElementById("bookings");
@@ -18,7 +18,7 @@ fetch("http://127.0.0.1:3001/api/bookings")
   .catch((error) => {
     console.log(error);
   });
-fetch("http://127.0.0.1:3001/api/comments")
+fetch("http://127.0.0.1:3002/api/v2/comments")
   .then((response) => response.json())
   .then((data) => {
     const h3Element = document.getElementById("comments");
@@ -28,7 +28,7 @@ fetch("http://127.0.0.1:3001/api/comments")
   .catch((error) => {
     console.log(error);
   });
-fetch("http://127.0.0.1:3001/api/blogs")
+fetch("http://127.0.0.1:3002/api/v2/blogs")
   .then((response) => response.json())
   .then((data) => {
     const h3Element = document.getElementById("blogs");
