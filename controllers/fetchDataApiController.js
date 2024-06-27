@@ -53,4 +53,38 @@ const fetchBlogs = async (req, res, next) => {
   }
 };
 
-export { fetchMembers, fetchBookings, fetchComments, fetchBlogs };
+const fetchMembersDetails = async (req, res, next) => {
+  const connection = dbConnect();
+  try {
+    const [rows] = await connection
+      .promise()
+      .query(`CALL c_selectTeamMembersDetails()`);
+
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+const fetchMembersDetailsById = async (req, res, next) => {
+  const connection = dbConnect();
+  const { id } = req.params;
+  try {
+    const [rows] = await connection
+      .promise()
+      .query(`CALL c_selectTeamMembersDetailsById(?)`, [id]);
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+export {
+  fetchMembers,
+  fetchBookings,
+  fetchComments,
+  fetchBlogs,
+  fetchMembersDetails,
+  fetchMembersDetailsById,
+};
