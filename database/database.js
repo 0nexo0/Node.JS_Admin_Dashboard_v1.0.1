@@ -1,7 +1,8 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
+import { log } from "node:console";
 
-dotenv.config({ path: "../config.env" });
+dotenv.config({ path: "./config.env" });
 
 const dbConnect = () => {
   const connection = mysql.createConnection({
@@ -11,9 +12,9 @@ const dbConnect = () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
   });
-  connection.connect(() => {
-    console.log(`Mysql Database is Connected Port: ${process.env.DB_PORT}`);
-  });
+
+  log(`Mysql Database is Connected Port: ${process.env.DB_PORT}`);
+
   return connection;
 };
 
