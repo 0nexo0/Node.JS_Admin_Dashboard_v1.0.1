@@ -1,16 +1,16 @@
 import express from "express";
 import {
-  getBlogs,
-  getBookings,
-  getComments,
-  getMembers,
-} from "../controllers/fetchAPiController.js";
+  fetchBlogs,
+  fetchBookings,
+  fetchComments,
+  fetchMembers,
+} from "../controllers/fetchDataApiController.js";
 
 const route = express.Router();
 
-route.get("/members", getMembers);
-route.get("/bookings", getBookings);
-route.get("/comments", getComments);
-route.get("/blogs", getBlogs);
+route.get("/members", fetchMembers);
+route.get("/bookings", fetchBookings);
+route.get("/comments", fetchComments);
+route.get("/blogs", fetchBlogs);
 
 export default route;
