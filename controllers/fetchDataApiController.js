@@ -1,47 +1,51 @@
 import dbConnect from "../database/database.js";
 
-const getMembers = async (req, res, next) => {
-  const connection = dbConnect();
-
-  try {
-    const [rows] = await connection.promise().query(`CALL select_members()`);
-    const response = rows[0];
-    res.status(200).json({ response });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-const getBookings = async (req, res, next) => {
+const fetchMembers = async (req, res, next) => {
   const connection = dbConnect();
 
   try {
     const [rows] = await connection
       .promise()
-      .query(`CALL eu_select_bookings()`);
+      .query(`CALL c_selectTeamMemberCount()`);
     const response = rows[0];
     res.status(200).json({ response });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-const getComments = async (req, res, next) => {
+const fetchBookings = async (req, res, next) => {
   const connection = dbConnect();
 
   try {
     const [rows] = await connection
       .promise()
-      .query(`CALL eu_select_Comments()`);
+      .query(`CALL c_selectBookingsCount()`);
     const response = rows[0];
     res.status(200).json({ response });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-const getBlogs = async (req, res, next) => {
+const fetchComments = async (req, res, next) => {
   const connection = dbConnect();
 
   try {
-    const [rows] = await connection.promise().query(`CALL getBlogs()`);
+    const [rows] = await connection
+      .promise()
+      .query(`CALL c_selectCommentsCount()`);
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+const fetchBlogs = async (req, res, next) => {
+  const connection = dbConnect();
+
+  try {
+    const [rows] = await connection
+      .promise()
+      .query(`CALL c_selectBlogsCount()`);
     const response = rows[0];
     res.status(200).json({ response });
   } catch (error) {
@@ -49,4 +53,4 @@ const getBlogs = async (req, res, next) => {
   }
 };
 
-export { getMembers, getBookings, getComments, getBlogs };
+export { fetchMembers, fetchBookings, fetchComments, fetchBlogs };
