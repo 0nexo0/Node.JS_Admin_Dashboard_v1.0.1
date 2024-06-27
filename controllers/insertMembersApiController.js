@@ -18,7 +18,7 @@ const insertMembers = async (req, res) => {
       linkedinlink,
       whatsappnumber,
     } = req.body;
-    const imgurl = req.file ? req.file.path : null;
+    const imgurl = req.imgurl || null;
 
     try {
       const db = req.app.locals.db;

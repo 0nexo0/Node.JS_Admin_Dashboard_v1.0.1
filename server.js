@@ -16,7 +16,7 @@ app.use(json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(join(__dirname, "public")));
-
+app.use("/uploads", express.static("public/uploads"));
 const PORT = process.env.PORT;
 
 const Connect = async () => {
