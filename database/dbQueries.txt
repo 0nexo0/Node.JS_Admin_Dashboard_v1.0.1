@@ -1,0 +1,23 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `c_deleteBlogOverviews`(
+IN  del_ID INT
+)
+BEGIN
+DELETE  FROM blog_overviews WHERE nID = del_ID;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `c_insertBlogsOverview`(
+   IN v_cTitile VARCHAR(255),
+   IN v_cAuthor VARCHAR(255),
+   IN v_cPostDate VARCHAR(255),
+   IN v_cImageUrl VARCHAR(255)
+)
+BEGIN
+ INSERT INTO blog_overviews (cTitile, cAuthor, cPostDate, cImageUrl)
+  VALUES(v_cTitile, v_cAuthor, v_cPostDate, v_cImageUrl);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `c_selectBlogsOverviewDetails`()
+BEGIN
+SELECT * FROM blog_overviews;
+END
+
