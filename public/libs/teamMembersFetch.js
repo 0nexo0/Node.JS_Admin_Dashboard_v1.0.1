@@ -7,15 +7,16 @@ fetch("http://127.0.0.1:3002/api/v2/membersdetails")
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${member.nID}</td>
+        <td style="text-align: left; vertical-align: middle;">${member.nID}</td>
         <td>${member.cName}</td>
         <td>${member.cPosition}</td>
-        <td><img src="http://localhost:3002/${member.cImageUrl}" alt="Member Image" style="width: 120px; height: 120px; border-radius: 8px;"></td>
-        <td><button class="delete-btn" data-id="${member.nID}">Delete</button></td>
+        <td style="text-align: start; padding-left: 2rem"><img src="http://localhost:3002/${member.cImageUrl}" alt="Member Image" style="width: 60px; height: 60px; border-radius: 8px;"></td>
+        <td  style="text-align: start"><i class="fa fa-trash delete-btn" data-id="${member.nID}" style="cursor: pointer; color: #250D50; padding-left: 1rem; padding-top: 1rem;"></i></td>
       `;
       console.log(member.cImageUrl);
       tableBody.appendChild(row);
     });
+    new DataTable("#editTeamTable");
 
     const deleteButtons = document.querySelectorAll(".delete-btn");
     deleteButtons.forEach((button) => {
