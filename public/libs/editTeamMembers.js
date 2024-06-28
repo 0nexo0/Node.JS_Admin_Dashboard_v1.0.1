@@ -1,17 +1,17 @@
 fetch("http://127.0.0.1:3002/api/v2/membersdetails")
   .then((response) => response.json())
   .then((data) => {
-    const tableBody = document.getElementById("memberTableBody");
+    const tableBody = document.getElementById("editMembersTableBody");
 
     data.response.forEach((member) => {
       const row = document.createElement("tr");
 
       row.innerHTML = `
         <td style="text-align: left; vertical-align: middle;">${member.nID}</td>
-        <td>${member.cName}</td>
-        <td>${member.cPosition}</td>
-        <td style="text-align: start; padding-left: 2rem"><img src="http://localhost:3002/${member.cImageUrl}" alt="Member Image" style="width: 60px; height: 60px; border-radius: 8px;"></td>
-        <td  style="text-align: start"><i class="fa fa-trash delete-btn" data-id="${member.nID}" style="cursor: pointer; color: #250D50; padding-left: 1rem; padding-top: 1rem;"></i></td>
+        <td style="text-align: start; vertical-align: middle;">${member.cName}</td>
+        <td style="text-align: start; vertical-align: middle;">${member.cPosition}</td>
+        <td style="text-align: start; vertical-align: middle; padding-left: 2rem"><img src="http://localhost:3002/${member.cImageUrl}" alt="Member Image" style="width: 60px; height: 60px; border-radius: 8px;"></td>
+        <td style="text-align: start; vertical-align: middle;"><i class="fa fa-trash delete-btn" data-id="${member.nID}" style="cursor: pointer; color: #250D50; padding-left: 1rem;"></i></td>
       `;
       console.log(member.cImageUrl);
       tableBody.appendChild(row);
@@ -22,7 +22,6 @@ fetch("http://127.0.0.1:3002/api/v2/membersdetails")
     deleteButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
         const memberId = event.target.getAttribute("data-id");
-        console.log(memberId);
 
         fetch("http://127.0.0.1:3002/api/v2/deletemembers", {
           method: "POST",

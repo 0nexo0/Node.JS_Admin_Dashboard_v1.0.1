@@ -80,6 +80,20 @@ const fetchMembersDetailsById = async (req, res, next) => {
   }
 };
 
+const fetchBlogsOverviewDetails = async (req, res) => {
+  const connection = dbConnect();
+
+  try {
+    const [rows] = await connection
+      .promise()
+      .query(`CALL c_selectBlogsOverviewDetails()`);
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 export {
   fetchMembers,
   fetchBookings,
@@ -87,4 +101,5 @@ export {
   fetchBlogs,
   fetchMembersDetails,
   fetchMembersDetailsById,
+  fetchBlogsOverviewDetails,
 };
