@@ -13,7 +13,7 @@ const fetchMembers = async (req, res, next) => {
     res.status(400).json({ error: error.message });
   }
 };
-const fetchBookings = async (req, res, next) => {
+const fetchBookingsCount = async (req, res, next) => {
   const connection = dbConnect();
 
   try {
@@ -26,7 +26,7 @@ const fetchBookings = async (req, res, next) => {
     res.status(400).json({ error: error.message });
   }
 };
-const fetchComments = async (req, res, next) => {
+const fetchCommentsCount = async (req, res, next) => {
   const connection = dbConnect();
 
   try {
@@ -94,12 +94,36 @@ const fetchBlogsOverviewDetails = async (req, res) => {
   }
 };
 
+const fetchComments = async (req, res) => {
+  const connection = dbConnect();
+  try {
+    const [rows] = await connection.promise().query(`CALL c_selectComments()`);
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const fetchBookings = async (req, res) => {
+  const connection = dbConnect();
+  try {
+    const [rows] = await connection.promise().query(`CALL c_manageBookings()`);
+    const response = rows[0];
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 export {
   fetchMembers,
-  fetchBookings,
-  fetchComments,
+  fetchBookingsCount,
+  fetchCommentsCount,
   fetchBlogs,
   fetchMembersDetails,
   fetchMembersDetailsById,
   fetchBlogsOverviewDetails,
+  fetchComments,
+  fetchBookings,
 };
