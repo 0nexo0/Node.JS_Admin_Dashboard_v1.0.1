@@ -1,5 +1,3 @@
-const { sendMail } = require("./mailer.js");
-
 fetch("http://127.0.0.1:3002/api/v2/managebookings")
   .then((response) => response.json())
   .then((data) => {
@@ -9,7 +7,7 @@ fetch("http://127.0.0.1:3002/api/v2/managebookings")
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${booking.nID}</td>
+        <td>${booking.nBookingNo}</td>
         <td>${booking.cName}</td>
         <td>${booking.cPhoneNumber}</td>
         <td>${booking.cEmail}</td>
@@ -38,12 +36,15 @@ fetch("http://127.0.0.1:3002/api/v2/managebookings")
       }", chkIn="${booking.cChkInDate}", chkOut="${
         booking.cChkOutDate
       }", pkg="${booking.cPkgName}", email="${booking.cEmail}">
-            <option value="0"
-            >Pending</option>
-            <option value="1" 
-            >Accepted</option>
-            <option value="2"
-            >Rejected</option>
+            <option value="0" ${
+              booking.nTrnStatus == 0 ? "selected" : ""
+            }>Pending</option>
+            <option value="1" ${
+              booking.nTrnStatus == 1 ? "selected" : ""
+            }>Accepted</option>
+            <option value="2" ${
+              booking.nTrnStatus == 2 ? "selected" : ""
+            }>Rejected</option>
           </select>
         </td>
       `;
@@ -76,8 +77,26 @@ fetch("http://127.0.0.1:3002/api/v2/managebookings")
           .then((response) => response.json())
           .then((updatedData) => {
             console.log("Data Successfully Updated", updatedData);
-            if (requestData.id == 1) {
-              sendMail(name, bID, email, pkg, chkIn, chkOut);
+            if (selectedStatus == 1) {
+              fetch("http://127.0.0.1:3002/api/v2/sendmail", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ bID, name, email, chkIn, chkOut, pkg }),
+              })
+                .then((response) => response.text())
+                .then((result) => {
+                  console.log(`Email Sent: ${result}`);
+                  alert(`Successfully Accepted : ${result}`);
+                  location.reload();
+                })
+                .catch((error) => {
+                  console.log("Email Send Error:", error);
+                });
+            } else {
+              alert(`Successfully Rejected`);
+              location.reload();
             }
           })
           .catch((error) => {
