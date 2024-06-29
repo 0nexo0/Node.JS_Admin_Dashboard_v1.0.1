@@ -60,5 +60,5 @@ route.get("/managebookings", fetchBookings);
 route.post("/insertbookings", insertBookings);
 
 //Update Bookings Status API Route
-route.put("/updabtestatus", updateBstatus);
+route.post("/updatestatus", updateBstatus);
 export default route;
