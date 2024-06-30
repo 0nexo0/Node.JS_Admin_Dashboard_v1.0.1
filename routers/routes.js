@@ -18,6 +18,7 @@ import { delComments } from "../controllers/delCommentsApiController.js";
 import { insertBookings } from "../controllers/insertBookingsApiController.js";
 import { updateBstatus } from "../controllers/updateBookingsStatusApiController.js";
 import sendMail from "../controllers/sendMailApiController.js";
+import blogDetails from "../controllers/blogDetailsApiController.js";
 
 const route = express.Router();
 
@@ -65,4 +66,7 @@ route.post("/updatestatus", updateBstatus);
 
 //Send Email API Rout
 route.post("/sendmail", sendMail);
+
+//Fetch Blog Details API Route
+route.get("/blogdetails", blogDetails);
 export default route;

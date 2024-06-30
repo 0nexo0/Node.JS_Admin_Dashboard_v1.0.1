@@ -4,16 +4,16 @@ const insertBookings = async (req, res) => {
   const connection = dbConnect();
   const {
     name,
-    mnumber,
+    phone_number,
     email,
-    adults,
-    childs,
+    members,
+    numOfChild,
     newm,
-    chkInDate,
-    chkOutDate,
+    chkIn,
+    chkOut,
     acco,
     pkg,
-    msg,
+    message,
   } = req.body;
   try {
     const db = connection;
@@ -21,16 +21,16 @@ const insertBookings = async (req, res) => {
       `CALL c_insertBookings(?,?,?,?,?,?,?,?,?,?,?)`,
       [
         name,
-        mnumber,
+        phone_number,
         email,
-        adults,
-        childs,
+        members,
+        numOfChild,
         newm,
-        chkInDate,
-        chkOutDate,
+        chkIn,
+        chkOut,
         acco,
         pkg,
-        msg,
+        message,
       ]
     );
     res.status(200).json({ response });
