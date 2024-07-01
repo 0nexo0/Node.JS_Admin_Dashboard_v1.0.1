@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lunoz - Admin & Dashboard Template</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="MyraStudio" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+
+    <!-- App css -->
+    <link
+      href="../assets/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/theme.min.css" rel="stylesheet" type="text/css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css"
+    />
+
+    <style>
+      /* Custom CSS for Dropzone */
+      #imgurl.dropzone {
+        border: 2px dashed #007bff; /* Blue dashed border */
+        border-radius: 5px;
+        min-height: 150px; /* Adjust height as needed */
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      #imgurl.dropzone .dz-message {
+        text-align: center;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+      <!-- Top Menu Bar Start -->
+
+      <div id="topMenuBarContainer"></div>
+
+      <!-- Top Menu Bar End -->
+
+      <!-- ========== Left Sidebar Start ========== -->
+      <div id="leftSideBarContainer"></div>
+      <!-- Left Sidebar End -->
+
+      <!-- ============================================================== -->
+      <!-- Start right Content here -->
+      <!-- ============================================================== -->
+      <div class="main-content">
+        <div class="page-content">
+          <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+              <div class="col-12">
+                <div
+                  class="page-title-box d-flex align-items-center justify-content-between"
+                >
+                  <h4 class="mb-0 font-size-18">Form Elements</h4>
+
+                  <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                      <li class="breadcrumb-item">
+                        <a href="javascript: void(0);">Forms</a>
+                      </li>
+                      <li class="breadcrumb-item active">Elements</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Form Controls</h4>
+                    <p class="card-subtitle mb-4">
+                      Textual form controls—like <code>input</code>s,<code>
+                        selects</code
+                      >, and<code> textare</code>s—are styled with the
+                      .form-control class. Included are styles for general
+                      appearance, focus state, sizing, and more.
+                    </p>
+
+                    <form
+                      action="http://localhost:3002/api/v2/insertsidebarimg"
+                      method="post"
+                      enctype="multipart/form-data"
+                      id="sideBarImagesForm"
+                    >
+                      <div class="form-group">
+                        <label for="simpleinput">Image Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="form-control"
+                          placeholder="Enter Image Name"
+                        />
+                      </div>
+                      <p class="notice">
+                        <span>Notice: </span>Please Add Width : 91px Height :
+                        91px Images Only.Images Of Other Sizes Are Lager Than
+                        The Size Shown Here.
+                      </p>
+                      <div class="form-group">
+                        <label for="simpleinput">Image Upload</label>
+                        <div id="imgurl" name="imgurl" class="dropzone"></div>
+                      </div>
+                      <button
+                        type="button"
+                        id="submit-button"
+                        class="btn btn-primary"
+                      >
+                        Submit
+                      </button>
+                    </form>
+                  </div>
+
+                  <!-- end card-body-->
+                </div>
+                <!-- end card -->
+
+                <!-- end card-body-->
+              </div>
+              <!-- end card-->
+
+              <!-- end card-body-->
+            </div>
+            <!-- end card -->
+
+            <!-- end row-->
+          </div>
+          <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <!-- Footer Start -->
+
+        <div id="footerContainer"></div>
+
+        <!-- Footer End -->
+      </div>
+      <!-- end main content-->
+    </div>
+    <!-- END layout-wrapper -->
+
+    <!-- Overlay-->
+    <div class="menu-overlay"></div>
+
+    <!-- jQuery  -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/metismenu.min.js"></script>
+    <script src="../assets/js/waves.js"></script>
+    <script src="../assets/js/simplebar.min.js"></script>
+
+    <!-- App js -->
+    <script src="../assets/js/theme.js"></script>
+
+    <!-- Dropzone js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+
+    <!-- Menu Loader js -->
+    <script src="../libs/menuLoader.js"></script>
+
+    <script>
+      Dropzone.autoDiscover = false;
+
+      const myDropzone = new Dropzone("#imgurl", {
+        url: "http://localhost:3002/api/v2/insertsidebarimg",
+        paramName: "image",
+        maxFilesize: 5, // MB
+        acceptedFiles: ".jpeg,.jpg,.png",
+        maxFiles: 1, // Limit the number of files uploaded to 1
+        addRemoveLinks: true,
+        autoProcessQueue: false,
+
+        init: function () {
+          const submitButton = document.querySelector("#submit-button");
+          const myDropzone = this; // closure
+
+          submitButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (myDropzone.getQueuedFiles().length > 0) {
+              myDropzone.processQueue(); // Process the file queue
+            } else {
+              document.querySelector("#sideBarImagesForm").submit(); // Submit the form if no files are in the queue
+            }
+          });
+
+          this.on("sending", (file, xhr, formData) => {
+            // Append all form inputs to the FormData object
+            document
+              .querySelectorAll("#sideBarImagesForm input")
+              .forEach(function (input) {
+                formData.append(input.name, input.value);
+              });
+          });
+
+          this.on("success", (file, response) => {
+            alert("Success");
+            document.querySelector("#sideBarImagesForm").submit(); // Submit the form after successful upload
+          });
+
+          this.on("error", (file, errorMessage) => {
+            console.error(errorMessage);
+          });
+        },
+      });
+    </script>
+  </body>
+</html>

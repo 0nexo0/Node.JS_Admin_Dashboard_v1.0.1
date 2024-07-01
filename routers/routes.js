@@ -19,6 +19,8 @@ import { insertBookings } from "../controllers/insertBookingsApiController.js";
 import { updateBstatus } from "../controllers/updateBookingsStatusApiController.js";
 import sendMail from "../controllers/sendMailApiController.js";
 import blogDetails from "../controllers/blogDetailsApiController.js";
+import sideBarImg from "../controllers/sideBarImagesApiController.js";
+import { insertSideBarImages } from "../controllers/insertSidebarImgApiController.js";
 
 const route = express.Router();
 
@@ -69,4 +71,10 @@ route.post("/sendmail", sendMail);
 
 //Fetch Blog Details API Route
 route.get("/blogdetails", blogDetails);
+
+//Fetch Side Bar Images API Route
+route.get("/sidebarimg", sideBarImg);
+
+//Insert Side Bar Images API Route
+route.post("/insertsidebarimg", insertSideBarImages);
 export default route;
