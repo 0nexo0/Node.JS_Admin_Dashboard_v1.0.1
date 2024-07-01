@@ -17,23 +17,20 @@ const insertBookings = async (req, res) => {
   } = req.body;
   try {
     const db = connection;
-    const [response] = db.execute(
-      `CALL c_insertBookings(?,?,?,?,?,?,?,?,?,?,?)`,
-      [
-        name,
-        phone_number,
-        email,
-        members,
-        numOfChild,
-        newm,
-        chkIn,
-        chkOut,
-        acco,
-        pkg,
-        message,
-      ]
-    );
-    res.status(200).json({ response });
+    await db.execute(`CALL c_insertBookings(?,?,?,?,?,?,?,?,?,?,?)`, [
+      name,
+      phone_number,
+      email,
+      members,
+      numOfChild,
+      newm,
+      chkIn,
+      chkOut,
+      acco,
+      pkg,
+      message,
+    ]);
+    res.redirect("http://127.0.0.1:5500/contact.html");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
