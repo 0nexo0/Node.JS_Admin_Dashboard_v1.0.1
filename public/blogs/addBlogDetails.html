@@ -102,7 +102,7 @@
                     </p>
 
                     <form
-                      action="http://localhost:3002/api/v2/insertblogsoverview"
+                      action="http://cmtapi.gimhanhashintha.me/api/v2/insertblogsoverview"
                       method="post"
                       enctype="multipart/form-data"
                       id="blogsOverviewForm"
@@ -261,7 +261,7 @@
       Dropzone.autoDiscover = false;
 
       const myDropzone = new Dropzone("#imgurl", {
-        url: "http://localhost:3002/api/v2/insertblogsoverview",
+        url: "http://cmtapi.gimhanhashintha.me/api/v2/insertblogsoverview",
         paramName: "image",
         maxFilesize: 5, // MB
         acceptedFiles: ".jpeg,.jpg,.png",

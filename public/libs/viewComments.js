@@ -1,4 +1,4 @@
-fetch("http://127.0.0.1:3002/api/v2/comments")
+fetch("http://cmtapi.gimhanhashintha.me/api/v2/comments")
   .then((response) => response.json())
   .then((data) => {
     const tableBody = document.getElementById("viewCommentsTabelBody");
