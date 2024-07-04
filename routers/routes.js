@@ -24,6 +24,11 @@ import { insertSideBarImages } from "../controllers/insertSidebarImgApiControlle
 
 const route = express.Router();
 
+//API Data Info API Route
+route.get("/", (req, res) => {
+  res.json("This is a comelankatours.com details API.");
+});
+
 //Dashboard Data Fetch API Routes
 route.get("/members", fetchMembers);
 route.get("/bookingsCount", fetchBookingsCount);
