@@ -5,13 +5,12 @@ const connection = dbConnect();
 const deleteMembers = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   console.log("Request Body:", req.body);
-  const { email } = req.body;
+  const { id } = req.body;
+  console.log(id);
   try {
-    const rows = await connection
+    const response = await connection
       .promise()
-      .query(`CALL c_getUserByEmail (?)`, [email]);
-
-    const response = rows[0][0][0].nID;
+      .query(`CALL c_deleteMembers (?)`, [id]);
     res.status(200).json({ response });
   } catch (error) {
     res.status(500).json({ error: error.message });
