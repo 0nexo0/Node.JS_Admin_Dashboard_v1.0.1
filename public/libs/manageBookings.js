@@ -1,4 +1,4 @@
-fetch("http://127.0.0.1:3002/api/v2/managebookings")
+fetch("http://cmtapi.gimhanhashintha.me/api/v2/managebookings")
   .then((response) => response.json())
   .then((data) => {
     const tableBody = document.getElementById("manageBookingsTableBody");
@@ -52,7 +52,8 @@ fetch("http://127.0.0.1:3002/api/v2/managebookings")
       const selectElement = row.querySelector(".statusSelect");
       selectElement.addEventListener("change", () => {
         const selectedStatus = parseInt(selectElement.value);
-        const updateURL = "http://127.0.0.1:3002/api/v2/updatestatus";
+        const updateURL =
+          "http://cmtapi.gimhanhashintha.me/api/v2/updatestatus";
         const requestData = {
           id: booking.nID,
           sts: selectedStatus,
@@ -78,7 +79,7 @@ fetch("http://127.0.0.1:3002/api/v2/managebookings")
           .then((updatedData) => {
             console.log("Data Successfully Updated", updatedData);
             if (selectedStatus == 1) {
-              fetch("http://127.0.0.1:3002/api/v2/sendmail", {
+              fetch("http://cmtapi.gimhanhashintha.me/api/v2/sendmail", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

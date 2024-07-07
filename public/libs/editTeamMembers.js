@@ -1,4 +1,4 @@
-fetch("http://127.0.0.1:3002/api/v2/membersdetails")
+fetch("http://cmtapi.gimhanhashintha.me/api/v2/membersdetails")
   .then((response) => response.json())
   .then((data) => {
     const tableBody = document.getElementById("editMembersTableBody");
@@ -23,7 +23,7 @@ fetch("http://127.0.0.1:3002/api/v2/membersdetails")
       button.addEventListener("click", (event) => {
         const memberId = event.target.getAttribute("data-id");
 
-        fetch("http://127.0.0.1:3002/api/v2/deletemembers", {
+        fetch("http://cmtapi.gimhanhashintha.me/api/v2/deletemembers", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
