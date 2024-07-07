@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { log } from "node:console";
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(join(__dirname, "public")));
 app.use("/uploads", express.static("public/uploads"));
+route.use(cookieParser());
 const PORT = process.env.PORT;
 
 const Connect = async () => {

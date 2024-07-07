@@ -21,6 +21,8 @@ import sendMail from "../controllers/sendMailApiController.js";
 import blogDetails from "../controllers/blogDetailsApiController.js";
 import sideBarImg from "../controllers/sideBarImagesApiController.js";
 import { insertSideBarImages } from "../controllers/insertSidebarImgApiController.js";
+import { registerUser } from "../controllers/registerUserApiController.js";
+import { userLogin } from "../controllers/loginApiController.js";
 
 const route = express.Router();
 
@@ -77,4 +79,10 @@ route.get("/sidebarimg", sideBarImg);
 
 //Insert Side Bar Images API Route
 route.post("/insertsidebarimg", insertSideBarImages);
+
+//Register Users API Route
+route.post("/register", registerUser);
+
+//User Login API Route
+route.post("/login", userLogin);
 export default route;
